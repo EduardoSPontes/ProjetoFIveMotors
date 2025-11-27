@@ -1,0 +1,266 @@
+﻿@{
+    ViewData["Title"] = "Quem Somos";
+    Layout = "/Views/Shared/_Layout_QuemSomos.cshtml";
+}
+
+<!-- ========================= HERO ========================= -->
+<div class="hero-container">
+
+    <img src="img/QuemSomos01.jpg" alt="Imagem principal" class="hero-bg" />
+
+    <div class="hero-title">
+        <h1>Bem-vindo(a) à era FiveMotors!</h1>
+        <p>Inovando o mercado automotivo com tecnologia, confiança e paixão por carros.</p>
+    </div>
+
+    <div class="hero-description">
+        <div class="desc-box">
+            <p>
+                A <strong>FiveMotors</strong> é especialista em compra e venda de veículos,
+                unindo qualidade, transparência e confiança em cada negociação.
+            </p>
+        </div>
+
+        <div class="desc-box">
+            <p>
+                Nossa equipe é movida pela paixão por carros e compromisso com o cliente —
+                entregando segurança, inovação e excelência em cada serviço.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<!-- ========================= MISSÃO / VISÃO / VALORES ========================= -->
+<section class="section-light">
+    <h2 class="section-title">Nossa Essência</h2>
+
+    <div class="cards-row">
+
+        <div class="mvv-card">
+            <h4>Missão</h4>
+            <p>Oferecer veículos de excelência e serviços que inspirem confiança e satisfação total.</p>
+        </div>
+
+        <div class="mvv-card">
+            <h4>Visão</h4>
+            <p>Ser referência nacional em inovação e atendimento automotivo de alta performance.</p>
+        </div>
+
+        <div class="mvv-card">
+            <h4>Valores</h4>
+            <p>Ética, transparência, respeito e paixão por carros — os pilares que impulsionam a FiveMotors.</p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ========================= ESTRUTURA ========================= -->
+<section class="section-white">
+    <h2 class="section-title">Nossa Estrutura</h2>
+
+    <p class="section-text">
+        Uma concessionária moderna, com tecnologia de ponta, espaço confortável e um showroom
+        que valoriza cada detalhe dos veículos.
+    </p>
+
+    <img src="img/Concessionaria.jpg"
+         alt="Estrutura da Concessionária"
+         class="estrutura-img" />
+</section>
+
+
+<!-- ========================= EQUIPE ========================= -->
+<section class="section-light">
+    <h2 class="section-title">Nossa Equipe</h2>
+
+    <div class="equipe-row">
+
+        <div class="equipe-card">
+            <img src="img/Equipe1.jpg" alt="Eduardo Pontes" class="equipe-img destaque-equipe">
+            <h5>Eduardo Pontes</h5>
+            <p class="cargo">Fundador & CEO</p>
+        </div>
+
+        <div class="equipe-card">
+            <img src="img/Equipe2.jpg" alt="Lucas Andrade" class="equipe-img">
+            <h5>Lucas Andrade</h5>
+            <p class="cargo">Gerente de Operações</p>
+        </div>
+
+        <div class="equipe-card">
+            <img src="img/Equipe3.jpg" alt="Maria Oliveira" class="equipe-img">
+            <h5>Maria Oliveira</h5>
+            <p class="cargo">Especialista em Vendas</p>
+        </div>
+
+        <div class="equipe-card">
+            <img src="img/Equipe4.jpg" alt="Ana Souza" class="equipe-img">
+            <h5>Ana Souza</h5>
+            <p class="cargo">Consultora de Clientes</p>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- ========================= ESTILOS ========================= -->
+<style>
+
+    /* ---------- HERO ---------- */
+    .hero-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .hero-bg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(60%);
+    }
+
+    .hero-title {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        width: 90%;
+        color: white;
+    }
+
+        .hero-title h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-title p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+    .hero-description {
+        position: absolute;
+        bottom: 12%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 50px;
+        width: 85%;
+        color: white;
+    }
+
+    .desc-box {
+        flex: 1;
+        min-width: 280px;
+        max-width: 450px;
+        text-align: center;
+    }
+
+        .desc-box p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+        }
+
+    /* ---------- SEÇÕES GERAIS ---------- */
+    .section-light {
+        padding: 100px 10%;
+        background-color: #F4F6F8;
+        text-align: center;
+    }
+
+    .section-white {
+        padding: 100px 10%;
+        background-color: white;
+        text-align: center;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #1C2C3A;
+        margin-bottom: 40px;
+    }
+
+    .section-text {
+        max-width: 750px;
+        margin: 0 auto 60px;
+        font-size: 1.1rem;
+        color: #555;
+    }
+
+    /* ---------- CARTÕES MISSÃO / VISÃO / VALORES ---------- */
+    .cards-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .mvv-card {
+        flex: 1;
+        min-width: 280px;
+        max-width: 350px;
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        border-top: 5px solid #0E7C7B;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+        .mvv-card h4 {
+            color: #0E7C7B;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+    /* ---------- ESTRUTURA ---------- */
+    .estrutura-img {
+        width: 100%;
+        max-width: 950px;
+        border-radius: 14px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* ---------- EQUIPE ---------- */
+    .equipe-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .equipe-card {
+        flex: 1;
+        min-width: 220px;
+        max-width: 250px;
+    }
+
+    .equipe-img {
+        width: 100%;
+        border-radius: 50%;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    }
+
+    .destaque-equipe {
+        border: 4px solid #0E7C7B;
+    }
+
+    .cargo {
+        color: #0E7C7B;
+        font-weight: bold;
+    }
+
+</style>

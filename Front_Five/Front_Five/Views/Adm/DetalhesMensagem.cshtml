@@ -1,0 +1,68 @@
+﻿@model FiveMotors.Models.FaleComVendedor
+
+@{
+    ViewData["Title"] = "Mensagem Recebida";
+    Layout = "/Views/Shared/_Layout_Adm.cshtml";
+}
+
+<div class="container py-4" style="max-width: 900px;">
+
+    <!-- CARD PRINCIPAL -->
+    <div class="card shadow-lg" style="border-radius: 18px; overflow:hidden;">
+
+        <!-- CABEÇALHO -->
+        <div class="card-header text-white"
+             style="background: linear-gradient(90deg,#0AADA6,#0CDAC3); border:none;">
+            <h3 class="mb-0 fw-bold">
+                📩 Mensagem de @Model.Nome
+            </h3>
+        </div>
+
+        <!-- CORPO -->
+        <div class="card-body p-4">
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <p class="mb-1 text-uppercase text-secondary fw-bold small">Email</p>
+                    <p class="fs-5">@Model.Email</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p class="mb-1 text-uppercase text-secondary fw-bold small">Telefone</p>
+                    <p class="fs-5">@Model.Telefone</p>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <p class="mb-1 text-uppercase text-secondary fw-bold small">Assunto</p>
+                <p class="fs-5">@Model.Assunto</p>
+            </div>
+
+
+        </div>
+
+        <!-- RODAPÉ -->
+        <div class="card-footer d-flex justify-content-between align-items-center bg-light">
+
+            <a asp-action="Mensagens"
+               class="btn btn-secondary px-4 fw-semibold"
+               style="border-radius:10px;">
+                ← Voltar
+            </a>
+
+            <form asp-action="DeletarMensagem"
+                  asp-route-id="@Model.FaleComVendedorId"
+                  method="post"
+                  onsubmit="return confirm('Tem certeza que deseja excluir esta mensagem?');">
+
+                <button type="submit"
+                        class="btn text-white fw-bold px-4"
+                        style="background:#D9534F; border-radius:10px;">
+                    🗑 Excluir
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+</div>

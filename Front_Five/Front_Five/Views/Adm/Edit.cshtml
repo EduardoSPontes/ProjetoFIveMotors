@@ -1,0 +1,106 @@
+﻿@model FiveMotors.Models.Veiculo
+
+@{
+    ViewData["Title"] = "Editar Veículo";
+    Layout = "/Views/Shared/_Layout_Adm.cshtml";
+}
+
+<div class="container py-4" style="max-width: 850px;">
+
+    <!-- TÍTULO -->
+    <h2 class="fw-bold mb-4"
+        style="color:#1F2F3E; letter-spacing:-0.5px;">
+        ✏️ Editar Veículo
+    </h2>
+
+    <!-- CARD DO FORMULÁRIO -->
+    <div class="card shadow-lg" style="border-radius:18px; overflow:hidden;">
+        <div class="card-body p-4">
+
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="VeiculosId" />
+
+                <div class="row g-3">
+
+                    <!-- Marca -->
+                    <div class="col-md-6">
+                        <label asp-for="Marca" class="form-label fw-semibold"></label>
+                        <input asp-for="Marca" class="form-control form-control-lg"
+                               style="border-radius:12px;" />
+                        <span asp-validation-for="Marca" class="text-danger"></span>
+                    </div>
+
+                    <!-- Modelo -->
+                    <div class="col-md-6">
+                        <label asp-for="Modelo" class="form-label fw-semibold"></label>
+                        <input asp-for="Modelo" class="form-control form-control-lg"
+                               style="border-radius:12px;" />
+                        <span asp-validation-for="Modelo" class="text-danger"></span>
+                    </div>
+
+                    <!-- Ano -->
+                    <div class="col-md-4">
+                        <label asp-for="Ano" class="form-label fw-semibold"></label>
+                        <input asp-for="Ano" class="form-control form-control-lg"
+                               style="border-radius:12px;" />
+                        <span asp-validation-for="Ano" class="text-danger"></span>
+                    </div>
+
+                    <!-- Preço -->
+                    <div class="col-md-4">
+                        <label asp-for="Preco" class="form-label fw-semibold"></label>
+                        <input asp-for="Preco" class="form-control form-control-lg"
+                               style="border-radius:12px;" />
+                        <span asp-validation-for="Preco" class="text-danger"></span>
+                    </div>
+
+                    <!-- Estoque -->
+                    <div class="col-md-4">
+                        <label asp-for="Estoque" class="form-label fw-semibold"></label>
+                        <input asp-for="Estoque" class="form-control form-control-lg"
+                               style="border-radius:12px;" />
+                        <span asp-validation-for="Estoque" class="text-danger"></span>
+                    </div>
+
+                    <!-- Descrição -->
+                    <div class="col-12">
+                        <label asp-for="Descricao" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Descricao"
+                                  class="form-control"
+                                  style="height:150px; border-radius:12px;"></textarea>
+                        <span asp-validation-for="Descricao" class="text-danger"></span>
+                    </div>
+
+                    <!-- Imagens -->
+                    <div class="col-12">
+                        <label asp-for="ImagemsVeiculo" class="form-label fw-semibold"></label>
+                        <input asp-for="ImagemsVeiculo" class="form-control form-control-lg"
+                               style="border-radius:12px;" />
+                        <span asp-validation-for="ImagemsVeiculo" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <!-- BOTÕES -->
+                <div class="mt-4 d-flex gap-2">
+
+                    <button type="submit"
+                            class="btn text-white px-4 fw-semibold"
+                            style="background: #25d366; border-radius:12px;">
+                        💾 Salvar Alterações
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-secondary px-4 fw-semibold"
+                       style="border-radius:12px;">
+                        Cancelar
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>

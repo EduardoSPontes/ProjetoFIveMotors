@@ -1,0 +1,92 @@
+﻿@model FiveMotors.Models.Veiculo
+
+@{
+    ViewData["Title"] = "Criar Veículo";
+    Layout = "/Views/Shared/_Layout_Adm.cshtml";
+}
+
+<div class="container py-4">
+
+    <!-- Título -->
+    <h2 class="fw-bold mb-4" style="color:#1F2F3E;">
+        ➕ Cadastrar Novo Veículo
+    </h2>
+
+    <div class="card shadow" style="border-radius: 16px;">
+        <div class="card-body p-4">
+
+            <form asp-action="Create" class="row g-3">
+
+                <!-- Marca -->
+                <div class="col-md-6">
+                    <label asp-for="Marca" class="form-label fw-semibold"></label>
+                    <input asp-for="Marca" class="form-control form-control-lg" placeholder="Ex: Honda" />
+                    <span asp-validation-for="Marca" class="text-danger"></span>
+                </div>
+
+                <!-- Modelo -->
+                <div class="col-md-6">
+                    <label asp-for="Modelo" class="form-label fw-semibold"></label>
+                    <input asp-for="Modelo" class="form-control form-control-lg" placeholder="Ex: Civic Touring" />
+                    <span asp-validation-for="Modelo" class="text-danger"></span>
+                </div>
+
+                <!-- Ano -->
+                <div class="col-md-4">
+                    <label asp-for="Ano" class="form-label fw-semibold"></label>
+                    <input asp-for="Ano" class="form-control form-control-lg" placeholder="2020" />
+                    <span asp-validation-for="Ano" class="text-danger"></span>
+                </div>
+
+                <!-- Preço -->
+                <div class="col-md-4">
+                    <label asp-for="Preco" class="form-label fw-semibold"></label>
+                    <input asp-for="Preco" class="form-control form-control-lg" placeholder="R$ 90.000,00" />
+                    <span asp-validation-for="Preco" class="text-danger"></span>
+                </div>
+
+                <!-- Estoque -->
+                <div class="col-md-4">
+                    <label asp-for="Estoque" class="form-label fw-semibold"></label>
+                    <input asp-for="Estoque" class="form-control form-control-lg" placeholder="Quantidade disponível" />
+                    <span asp-validation-for="Estoque" class="text-danger"></span>
+                </div>
+
+                <!-- Descrição -->
+                <div class="col-12">
+                    <label asp-for="Descricao" class="form-label fw-semibold"></label>
+                    <textarea asp-for="Descricao" class="form-control" rows="4"
+                              placeholder="Descreva as principais características do veículo"></textarea>
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+
+                <!-- Imagens -->
+                <div class="col-12">
+                    <label asp-for="ImagemsVeiculo" class="form-label fw-semibold"></label>
+                    <input asp-for="ImagemsVeiculo" class="form-control" placeholder="URL da imagem" />
+                    <span asp-validation-for="ImagemsVeiculo" class="text-danger"></span>
+                </div>
+
+                <!-- Botões -->
+                <div class="col-12 mt-4 d-flex gap-2">
+
+                    <button type="submit"
+                            class="btn px-4 text-white fw-bold"
+                            style="background:#25D366; border-radius:10px;">
+                        💾 Salvar
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-secondary px-4 fw-semibold"
+                       style="border-radius:10px;">
+                        Cancelar
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>

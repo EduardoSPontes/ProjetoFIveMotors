@@ -1,0 +1,261 @@
+﻿@model FiveMotors.Models.Venda
+@{
+    Layout = "_Layout_Pagamento";
+    var veiculo = ViewBag.Veiculo as FiveMotors.Models.Veiculo;
+    var forma = ViewBag.FormaPagamento as FiveMotors.Models.FormaDePagamento;
+}
+
+<div class="venda-container">
+    <header class="venda-header">
+        <h1>Proposta de Venda - FiveMotors</h1>
+        <p>Resumo da transação realizada com sucesso</p>
+    </header>
+
+    <section class="dados-gerais">
+        <div class="bloco-veiculo">
+            <h2>Veículo Adquirido</h2>
+            <div class="veiculo-info">
+                <div class="img-box">
+                    <img src="@veiculo.ImagemsVeiculo.FirstOrDefault()" alt="@veiculo.Marca @veiculo.Modelo" />
+                </div>
+                <div class="dados-veiculo">
+                    <h3>@veiculo.Marca @veiculo.Modelo (@veiculo.Ano)</h3>
+                    <p>@veiculo.Descricao</p>
+                    <div class="detalhes">
+                        <p><strong>Preço:</strong> R$ @veiculo.Preco.ToString("N0")</p>
+                        <p><strong>Forma de Pagamento:</strong> @forma.Descricao</p>
+                        <p><strong>Estoque:</strong> @veiculo.Estoque unidade(s)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bloco-resumo">
+            <h2>Resumo da Transação</h2>
+            <div class="dados-resumo">
+                <p><strong>Cliente ID:</strong> @Model.ClienteId</p>
+                <p><strong>Veículo:</strong> @veiculo.Marca @veiculo.Modelo</p>
+                <p><strong>Valor Total:</strong> R$ @veiculo.Preco.ToString("N0")</p>
+                <p><strong>Forma de Pagamento:</strong> @forma.Descricao</p>
+                <p><strong>Data da Venda:</strong> @Model.DataHora.ToString("dd/MM/yyyy HH:mm")</p>
+                <p><strong>Entrega Prevista:</strong> @Model.DataPrevistaEntrega.ToString("dd/MM/yyyy")</p>
+                <p><strong>Status:</strong> Concluída</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="condicoes">
+        <h2>Condições e Informações</h2>
+        <p>
+            Agradecemos pela preferência em escolher a <strong>FiveMotors</strong>.
+            O veículo será preparado conforme os padrões de entrega e documentação.
+            Nossa equipe entrará em contato dentro de <strong>48 horas úteis</strong> para confirmar os detalhes de retirada
+            ou entrega, conforme o método escolhido.
+        </p>
+
+        <p>
+            Todas as garantias e condições de uso seguem o termo de compra e venda digital da FiveMotors.
+            Caso tenha dúvidas, entre em contato pelo nosso canal oficial:
+            <a href="mailto:contato@fivemotors.com.br">contato@fivemotors.com.br</a>.
+        </p>
+    </section>
+
+    <footer class="acoes-footer">
+        <a href="/ProdutosServicos/Index" class="btn voltar">Voltar à Loja</a>
+        <a href="/Cliente/MinhasCompras" class="btn detalhes">Ver Compras</a>
+        <a href="/Contato" class="btn suporte">Falar com Suporte</a>
+    </footer>
+</div>
+
+<style>
+    body {
+        background: #f7f8fa;
+        font-family: 'Poppins', sans-serif;
+        color: #222;
+        margin: 0;
+        padding: 0;
+    }
+
+    .venda-container {
+        max-width: 1100px;
+        margin: 60px auto;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        overflow: hidden;
+        animation: fadeIn .8s ease;
+    }
+
+    .venda-header {
+        background: linear-gradient(90deg, #0d253f, #133a63);
+        color: #fff;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+        .venda-header h1 {
+            font-size: 28px;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .venda-header p {
+            margin-top: 8px;
+            font-size: 15px;
+            color: #cfd9e4;
+        }
+
+    .dados-gerais {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 40px;
+        gap: 40px;
+    }
+
+    .bloco-veiculo, .bloco-resumo {
+        background: #fafafa;
+        border-radius: 12px;
+        padding: 25px 30px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    }
+
+        .bloco-veiculo h2, .bloco-resumo h2 {
+            color: #0d253f;
+            font-size: 20px;
+            margin-bottom: 18px;
+        }
+
+    .veiculo-info {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .img-box img {
+        width: 260px;
+        border-radius: 10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .dados-veiculo h3 {
+        margin-top: 0;
+        color: #333;
+    }
+
+    .dados-veiculo p {
+        color: #666;
+        margin: 5px 0 15px;
+    }
+
+    .detalhes p {
+        font-size: 15px;
+        margin: 4px 0;
+    }
+
+    .dados-resumo p {
+        margin: 6px 0;
+        color: #444;
+        font-size: 15px;
+    }
+
+    .condicoes {
+        padding: 35px 40px;
+        border-top: 1px solid #eee;
+    }
+
+        .condicoes h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #0d253f;
+        }
+
+        .condicoes p {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .condicoes a {
+            color: #0d79d0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .condicoes a:hover {
+                text-decoration: underline;
+            }
+
+    .acoes-footer {
+        background: #f1f3f6;
+        padding: 25px 40px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+        border-top: 1px solid #ddd;
+    }
+
+    .btn {
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-size: 14px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+        .btn.voltar {
+            background: #e3e6ea;
+            color: #333;
+        }
+
+            .btn.voltar:hover {
+                background: #d4d8dd;
+            }
+
+        .btn.detalhes {
+            background: #0d253f;
+            color: #fff;
+        }
+
+            .btn.detalhes:hover {
+                background: #153b64;
+            }
+
+        .btn.suporte {
+            background: #0d79d0;
+            color: #fff;
+        }
+
+            .btn.suporte:hover {
+                background: #0b66b0;
+            }
+
+    @@keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    @@media (max-width: 900px) {
+        .dados-gerais
+
+    {
+        grid-template-columns: 1fr;
+    }
+
+    .img-box img {
+        width: 100%;
+    }
+
+    }
+</style>

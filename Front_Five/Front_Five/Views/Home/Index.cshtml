@@ -1,0 +1,209 @@
+﻿@model IEnumerable<FiveMotors.Models.Veiculo>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- ========================= HERO ========================= -->
+<section class="hero-section py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <!-- Texto principal -->
+            <div class="col-md-6 text-center text-md-start">
+                <h1 class="fw-bold display-5 mb-3 text-primary-title">
+                    Tecnologia que transforma a sua experiência de compra
+                </h1>
+
+                <p class="lead text-secondary-paragraph">
+                    Explore o futuro automotivo com a FiveMotors. Conecte-se com o carro ideal,
+                    descubra novas possibilidades e viva uma experiência totalmente digital.
+                </p>
+
+                <a href="#produtos"
+                   class="btn btn-lg px-4 mt-3 shadow-sm btn-highlight">
+                    Quero saber mais
+                </a>
+            </div>
+
+            <!-- Imagem -->
+            <div class="col-md-6 text-center">
+                <div class="position-relative">
+                    <img src="https://agencianovofoco.com.br/wp-content/uploads/2024/11/estrategias-de-marketing-digital-para-concessionarias.jpeg"
+                         alt="Carro digital"
+                         class="img-fluid rounded-4 shadow-lg hero-img">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= DESTAQUES ========================= -->
+<section class="py-5 bg-light" id="produtos">
+    <div class="container text-center">
+
+        <h2 class="fw-bold mb-4 text-primary-title">Destaques da Semana</h2>
+
+        <div class="row g-4">
+
+            @foreach (var v in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm rounded-4 destaque-card">
+
+                        <div class="overflow-hidden rounded-top-4">
+                            <img src="@v.ImagemsVeiculo.FirstOrDefault()"
+                                 alt="@v.Modelo"
+                                 class="card-img-top destaque-img">
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="fw-bold">@v.Modelo</h5>
+                            <p class="text-muted mb-2">@v.Descricao</p>
+
+                            
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ========================= PARCEIROS ========================= -->
+<section class="py-5 bg-partners">
+    <div class="container text-center">
+
+        <h2 class="fw-bold mb-5 text-primary-title">Empresas Parceiras</h2>
+
+        <div class="row justify-content-center g-4">
+
+            <!-- Jeep -->
+            <div class="col-6 col-md-3">
+                <div class="parceiro-card p-4 bg-white shadow-sm rounded-4">
+                    <img src="~/img/jeep-76 1.png" alt="Jeep" class="img-fluid parceiro-logo mb-3">
+                    <h6 class="fw-semibold mb-0 text-primary-title">JEEP</h6>
+                </div>
+            </div>
+
+            <!-- Ford -->
+            <div class="col-6 col-md-3">
+                <div class="parceiro-card p-4 bg-white shadow-sm rounded-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg"
+                         alt="Ford"
+                         class="img-fluid parceiro-logo mb-3">
+                    <h6 class="fw-semibold mb-0 text-primary-title">Ford</h6>
+                </div>
+            </div>
+
+            <!-- Nissan -->
+            <div class="col-6 col-md-3">
+                <div class="parceiro-card p-4 bg-white shadow-sm rounded-4">
+                    <img src="~/img/nissan-logo-0-2 1.png" alt="Nissan" class="img-fluid parceiro-logo mb-3">
+                    <h6 class="fw-semibold mb-0 text-primary-title">Nissan</h6>
+                </div>
+            </div>
+
+            <!-- Chevrolet -->
+            <div class="col-6 col-md-3">
+                <div class="parceiro-card p-4 bg-white shadow-sm rounded-4">
+                    <img src="~/img/Chevrolet_simple_logo 1.png" alt="Chevrolet" class="img-fluid parceiro-logo mb-3">
+                    <h6 class="fw-semibold mb-0 text-primary-title">Chevrolet</h6>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ========================= ESTILOS ========================= -->
+<style>
+    /* ----------- Cores ----------- */
+    .text-primary-title {
+        color: #2B3A4B;
+    }
+
+    .text-secondary-paragraph {
+        color: #6C757D;
+    }
+
+    .btn-highlight {
+        background-color: #0CDAC3;
+        color: white;
+        border-radius: 25px;
+        font-weight: 600;
+    }
+
+    .btn-detalhes {
+        background-color: #489891;
+        color: white;
+        border-radius: 20px;
+    }
+
+    /* ----------- Hero ---------- */
+    .hero-img {
+        border-radius: 20px;
+        max-width: 100%;
+    }
+
+    /* ----------- Destaques ---------- */
+    .destaque-card {
+        transition: all .3s ease;
+    }
+
+        .destaque-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+
+    .destaque-img {
+        transition: transform .4s ease;
+    }
+
+    .destaque-card:hover .destaque-img {
+        transform: scale(1.08);
+    }
+
+    /* ----------- Parceiros ---------- */
+    .parceiro-card {
+        transition: all .3s ease;
+        cursor: pointer;
+    }
+
+        .parceiro-card:hover {
+            transform: translateY(-6px);
+            background-color: #0cdac3;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+            .parceiro-card:hover h6 {
+                color: white;
+            }
+
+    .parceiro-logo {
+        max-height: 60px;
+        filter: grayscale(100%);
+        transition: all .3s ease;
+    }
+
+    .parceiro-card:hover .parceiro-logo {
+        filter: grayscale(0%);
+        transform: scale(1.1);
+    }
+
+    @@media (max-width: 768px) {
+        .parceiro-logo
+
+    {
+        max-height: 45px;
+    }
+
+    }
+</style>

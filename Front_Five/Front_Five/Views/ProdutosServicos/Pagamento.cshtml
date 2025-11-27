@@ -1,0 +1,291 @@
+﻿@model FiveMotors.Models.Veiculo
+@{
+    Layout = "_Layout_Pagamento";
+    var formasPagamento = ViewBag.FormasPagamento as List<FiveMotors.Models.FormaDePagamento>;
+}
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        padding: 0;
+        color: #1e1e1e;
+    }
+
+    .pagamento-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 40px;
+        padding: 60px 20px;
+        max-width: 1300px;
+        margin: auto;
+    }
+
+    /* --- CARD VEÍCULO --- */
+    .card-veiculo {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,.08);
+        overflow: hidden;
+        width: 400px;
+        transition: transform .3s ease;
+    }
+
+        .card-veiculo:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-veiculo img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+    .info-veiculo {
+        padding: 25px;
+    }
+
+        .info-veiculo h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .info-veiculo p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+    .preco {
+        font-size: 26px;
+        font-weight: 700;
+        color: #0cdac3;
+        margin-top: 10px;
+    }
+
+    /* --- FORMULÁRIO DE PAGAMENTO --- */
+    .form-pagamento {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,.08);
+        padding: 40px 30px;
+        flex: 1;
+        max-width: 600px;
+        animation: fadeIn .5s ease;
+    }
+
+        .form-pagamento h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 25px;
+        }
+
+    .opcao-pagamento {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #f8f9fb;
+        border-radius: 12px;
+        padding: 14px 18px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: all .2s ease;
+    }
+
+        .opcao-pagamento:hover {
+            background: #eef3f6;
+        }
+
+        .opcao-pagamento.selected {
+            border-color: #0cdac3;
+            background: #e9fcfa;
+        }
+
+        .opcao-pagamento label {
+            font-weight: 500;
+            cursor: pointer;
+            flex: 1;
+        }
+
+    .info-condicao {
+        font-size: 13px;
+        color: #666;
+        white-space: nowrap;
+    }
+
+    /* --- DETALHES DE PAGAMENTO --- */
+    .detalhes {
+        display: none;
+        margin-top: 20px;
+        animation: fadeIn .3s ease;
+    }
+
+        .detalhes input, .detalhes select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+            .detalhes input:focus {
+                border-color: #0cdac3;
+                box-shadow: 0 0 0 3px rgba(12,218,195,.1);
+            }
+
+    .qr-code {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+        .qr-code img {
+            width: 180px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,.1);
+        }
+
+    /* --- BOTÃO --- */
+    .btn-confirmar {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        background: linear-gradient(90deg,#0cdac3,#099b8b);
+        margin-top: 25px;
+        cursor: pointer;
+        transition: all .3s ease;
+        box-shadow: 0 4px 15px rgba(12,218,195,.3);
+    }
+
+        .btn-confirmar:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(90deg,#099b8b,#0cdac3);
+        }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="pagamento-wrapper">
+
+    <!-- CARD VEÍCULO -->
+    <div class="card-veiculo">
+        <img src="@Model.ImagemsVeiculo.FirstOrDefault()" alt="@Model.Marca @Model.Modelo">
+        <div class="info-veiculo">
+            <h2>@Model.Marca @Model.Modelo (@Model.Ano)</h2>
+            <p>@Model.Descricao</p>
+            <p class="preco">R$ @Model.Preco.ToString("N0")</p>
+        </div>
+    </div>
+
+    <!-- FORMULÁRIO DE PAGAMENTO -->
+    <div class="form-pagamento">
+        <h2>Escolha a forma de pagamento</h2>
+        <form method="post" asp-action="ConfirmarPagamento" asp-controller="ProdutosServicos">
+            <input type="hidden" name="VeiculoId" value="@Model.VeiculosId" />
+            <input type="hidden" name="ClienteId" value="@ViewBag.ClienteId" />
+
+            @if (formasPagamento != null && formasPagamento.Any())
+            {
+                foreach (var fp in formasPagamento)
+                {
+                    <div class="opcao-pagamento" onclick="selecionarOpcao(this)">
+                        <input type="radio" id="pag_@fp.FormaDePagamentoId" name="formaPagamentoId" value="@fp.FormaDePagamentoId" style="margin-right:10px;">
+                        <label for="pag_@fp.FormaDePagamentoId">@fp.Descricao</label>
+                        <div class="info-condicao">
+                            @if (fp.Descricao.Contains("Cartão"))
+                            {
+                                <span>@fp.ParcelasMax× • @fp.JurosMensal.ToString("0.##")% juros</span>
+                            }
+                            else if (fp.Descricao.Contains("PIX"))
+                            {
+                                <span>@fp.DescontoAVista.ToString("0.#")% de desconto</span>
+                            }
+                            else
+                            {
+                                <span>Taxa padrão</span>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+
+            <!-- Cartão -->
+            <div class="detalhes" id="detalhesCartao">
+                <label>Número do Cartão</label>
+                <input type="text" placeholder="0000 0000 0000 0000">
+                <label>Validade</label>
+                <input type="text" placeholder="MM/AA">
+                <label>CVV</label>
+                <input type="text" placeholder="000">
+                <label>Nome impresso no cartão</label>
+                <input type="text" placeholder="Ex: EDUARDO PONTES">
+            </div>
+
+            <!-- PIX -->
+            <div class="detalhes" id="detalhesPix">
+                <p>Escaneie o QR Code abaixo para realizar o pagamento instantâneo via PIX:</p>
+                <div class="qr-code">
+                    <img src="/img/qr-code.png" alt="QR Code PIX">
+                </div>
+            </div>
+
+            <!-- Boleto -->
+            <div class="detalhes" id="detalhesBoleto">
+                <p>Boleto bancário será gerado com vencimento em até <strong>5 dias úteis</strong>.</p>
+                <p>Você receberá o documento por e-mail após a confirmação.</p>
+            </div>
+
+            <button type="submit" class="btn-confirmar">Confirmar Pagamento</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const radios = document.querySelectorAll('input[name="formaPagamentoId"]');
+    const detalhes = {
+        cartao: document.getElementById("detalhesCartao"),
+        pix: document.getElementById("detalhesPix"),
+        boleto: document.getElementById("detalhesBoleto")
+    };
+
+    function selecionarOpcao(el) {
+        document.querySelectorAll('.opcao-pagamento').forEach(op => op.classList.remove('selected'));
+        el.classList.add('selected');
+        el.querySelector('input').checked = true;
+        atualizarDetalhes();
+    }
+
+    function atualizarDetalhes() {
+        for (const key in detalhes) detalhes[key].style.display = 'none';
+        const selecionado = document.querySelector('input[name="formaPagamentoId"]:checked');
+        if (!selecionado) return;
+
+        const label = selecionado.nextElementSibling.innerText.trim();
+        if (label.includes('Cartão')) detalhes.cartao.style.display = 'block';
+        else if (label.includes('PIX')) detalhes.pix.style.display = 'block';
+        else if (label.includes('Boleto')) detalhes.boleto.style.display = 'block';
+    }
+</script>

@@ -1,0 +1,413 @@
+﻿@model FiveMotors.Models.Veiculo
+
+@{
+    ViewData["Title"] = $"{Model.Marca} {Model.Modelo}";
+    Layout = "/Views/Shared/_Layout_Produtos.cshtml";
+}
+
+
+<div class="veiculo-page">
+
+    <div class="veiculo-content">
+
+        <!-- =======================
+             GALERIA DE IMAGENS
+        ========================== -->
+        <div class="galeria">
+            <img id="mainImage" src="@Model.ImagemsVeiculo.FirstOrDefault()" alt="@Model.Modelo" />
+
+            <div class="miniaturas">
+                @foreach (var img in Model.ImagemsVeiculo)
+                {
+                    <img src="@img" onclick="document.getElementById('mainImage').src='@img'" />
+                }
+            </div>
+        </div>
+
+        <!-- =======================
+             DETALHES DO VEÍCULO
+        ========================== -->
+        <div class="detalhes">
+
+            <h1>@Model.Marca @Model.Modelo</h1>
+            <p class="sub">@Model.Ano • @Model.Marca</p>
+
+            <div class="preco">R$ @Model.Preco.ToString("N0")</div>
+
+            <!-- GRID DOS DETALHES -->
+            <div class="detalhes-grid">
+                <p><strong>Modelo:</strong> @Model.Modelo</p>
+                <p><strong>Ano:</strong> @Model.Ano</p>
+                <p><strong>Cor:</strong> Preto</p>
+                <p><strong>Combustível:</strong> Gasolina</p>
+                <p><strong>Transmissão:</strong> Automática</p>
+                <p><strong>Estoque:</strong> @Model.Estoque unidade(s)</p>
+            </div>
+
+            <!-- BOTÕES DE AÇÕES -->
+            <!-- BOTÕES DE AÇÃO -->
+            <div class="botoes">
+
+                <!-- Botão Voltar -->
+                <a href="/ProdutosServicos/Index" class="btn-voltar">Voltar</a>
+
+                <!-- Botão Tenho Interesse -->
+                <button type="button"
+                        class="btn-interesse"
+                        data-bs-toggle="modal"
+                        data-bs-target="#confirmarInteresseModal">
+                    <i class="bi bi-envelope-heart-fill me-2"></i>
+                    Tenho Interesse
+                </button>
+
+                <!-- Modal de Confirmação -->
+                <div class="modal fade" id="confirmarInteresseModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirmar Interesse</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                Tem certeza que deseja enviar seu interesse neste veículo?
+                                <br>
+                                <strong>@Model.Marca @Model.Modelo</strong>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+
+                                <!-- Formulário real que será enviado -->
+                                <form method="post"
+                                      asp-action="Interesse"
+                                      asp-route-veiculoId="@Model.VeiculosId">
+                                    <button type="submit" class="btn btn-primary">
+                                        Confirmar
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão WhatsApp -->
+                <button type="button" class="btn-whatsapp" data-bs-toggle="modal" data-bs-target="#whatsappModal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                         alt="WhatsApp" class="whatsapp-icon" />
+                    Chamar no WhatsApp
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="whatsappModalLabel">Confirmar envio via WhatsApp</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                Tem certeza que deseja iniciar uma conversa no WhatsApp sobre:
+                                <br>
+                                <strong>@Model.Marca @Model.Modelo</strong>?
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+
+                                <!-- Formulário real -->
+                                <form asp-action="EnviarWhatsApp"
+                                      asp-route-veiculoId="@Model.VeiculosId"
+                                      method="post" class="d-inline">
+
+                                    <input type="hidden" name="mensagemDoCliente"
+                                           value="Olá, tenho interesse no veículo @Model.Marca @Model.Modelo" />
+
+                                    <button type="submit" class="btn btn-success">
+                                        Enviar WhatsApp
+                                    </button>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================
+         ACESSÓRIOS
+    ========================== -->
+    <div class="acessorios">
+        <h3>Acessórios e Itens de Série</h3>
+
+        <div class="lista-acessorios">
+            <p><span class="check">&#10003;</span> Ar-condicionado digital</p>
+            <p><span class="check">&#10003;</span> Direção elétrica</p>
+            <p><span class="check">&#10003;</span> Central multimídia touchscreen</p>
+            <p><span class="check">&#10003;</span> Rodas de liga leve</p>
+            <p><span class="check">&#10003;</span> Controle de estabilidade</p>
+            <p><span class="check">&#10003;</span> Sensor de estacionamento</p>
+            <p><span class="check">&#10003;</span> Câmera de ré</p>
+            <p><span class="check">&#10003;</span> Banco em couro</p>
+            <p><span class="check">&#10003;</span> Airbags frontais e laterais</p>
+            <p><span class="check">&#10003;</span> Freios ABS</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<style>
+    body {
+        background-color: #f2f3f5;
+        font-family: 'Poppins', sans-serif;
+        color: #1f1f1f;
+        margin: 0;
+    }
+
+    /* CONTAINER PRINCIPAL */
+    .veiculo-page {
+        max-width: 1300px;
+        margin: 60px auto;
+        padding: 0 20px;
+    }
+
+    .veiculo-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+    }
+
+    /* GALERIA */
+    .galeria {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        position: sticky;
+        top: 30px;
+    }
+
+        .galeria img#mainImage {
+            width: 100%;
+            border-radius: 14px;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+            .galeria img#mainImage:hover {
+                transform: scale(1.02);
+            }
+
+    .miniaturas {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+        .miniaturas img {
+            width: 90px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: all 0.25s ease;
+        }
+
+            .miniaturas img:hover {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+    /* CARD DE DETALHES */
+    .detalhes {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        padding: 40px 45px;
+    }
+
+        .detalhes h1 {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .detalhes .sub {
+            color: #777;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+    .preco {
+        font-size: 30px;
+        font-weight: 700;
+        color: #b48d12;
+        margin-bottom: 30px;
+    }
+
+    .detalhes-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 25px;
+        color: #444;
+        font-size: 15px;
+        margin-bottom: 35px;
+    }
+
+    /* BOTÕES */
+    .botoes {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    /* Botão Voltar */
+    .btn-voltar {
+        background: #ececec;
+        color: #333;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        border: 1px solid #ddd;
+        transition: background 0.2s ease;
+    }
+
+        .btn-voltar:hover {
+            background: #dcdcdc;
+        }
+
+    /* Botão Tenho Interesse */
+    .btn-interesse {
+        background: #1976d2; /* azul sólido */
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+        .btn-interesse:hover {
+            background: #1565c0;
+            transform: translateY(-1px);
+        }
+
+    /* Botão WhatsApp */
+    .btn-whatsapp {
+        background: #25d366;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+        .btn-whatsapp:hover {
+            background: #1ebe5d;
+            transform: translateY(-1px);
+        }
+
+        /* Ícone do WhatsApp */
+        .btn-whatsapp .whatsapp-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+    /* ACESSÓRIOS */
+    .acessorios {
+        background: #fff;
+        border-radius: 18px;
+        padding: 35px 40px;
+        margin-top: 60px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+
+        .acessorios h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+    .lista-acessorios {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px 20px;
+    }
+
+        .lista-acessorios p {
+            font-size: 15px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+        }
+
+    .check {
+        color: #4CAF50;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    /* FORMULÁRIO */
+    .formulario {
+        background: #fff;
+        border-radius: 12px;
+        padding: 25px 30px;
+        max-width: 480px;
+        margin: 60px auto 80px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+        .formulario input,
+        .formulario textarea {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: #fafafa;
+        }
+
+    /* RESPONSIVO */
+    @@media (max-width: 950px) {
+        .veiculo-content
+
+    {
+        grid-template-columns: 1fr;
+    }
+
+    }
+</style>

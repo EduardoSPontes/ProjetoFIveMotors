@@ -1,0 +1,66 @@
+﻿@model FiveMotors.Models.Veiculo
+
+@{
+    ViewData["Title"] = "Excluir Veículo";
+    Layout = "/Views/Shared/_Layout_Adm.cshtml";
+}
+
+<div class="container py-4">
+
+    <!-- TÍTULO -->
+    <h2 class="fw-bold mb-3" style="color:#B00020;">
+        🗑 Excluir Veículo
+    </h2>
+
+    <p class="text-muted mb-4" style="font-size:1.1rem;">
+        Tem certeza que deseja remover este veículo do sistema?
+        <strong>Essa ação não pode ser desfeita.</strong>
+    </p>
+
+    <!-- CARD DOS DADOS -->
+    <div class="card shadow" style="border-radius: 16px;">
+        <div class="card-body p-4">
+
+            <dl class="row mb-0">
+
+                <dt class="col-sm-3 fw-bold text-secondary">Marca</dt>
+                <dd class="col-sm-9">@Model.Marca</dd>
+
+                <dt class="col-sm-3 fw-bold text-secondary">Modelo</dt>
+                <dd class="col-sm-9">@Model.Modelo</dd>
+
+                <dt class="col-sm-3 fw-bold text-secondary">Ano</dt>
+                <dd class="col-sm-9">@Model.Ano</dd>
+
+                <dt class="col-sm-3 fw-bold text-secondary">Preço</dt>
+                <dd class="col-sm-9">R$ @Model.Preco</dd>
+
+                <dt class="col-sm-3 fw-bold text-secondary">Descrição</dt>
+                <dd class="col-sm-9">@Model.Descricao</dd>
+
+                <dt class="col-sm-3 fw-bold text-secondary">Estoque</dt>
+                <dd class="col-sm-9">@Model.Estoque</dd>
+
+            </dl>
+
+        </div>
+    </div>
+
+    <!-- BOTÕES -->
+    <form asp-action="Delete" class="mt-4">
+        <input type="hidden" asp-for="VeiculosId" />
+
+        <button type="submit"
+                class="btn text-white px-4 fw-bold"
+                style="background:#D9534F; border-radius:10px;">
+            🗑 Excluir
+        </button>
+
+        <a asp-action="Index"
+           class="btn btn-secondary px-4 fw-semibold ms-2"
+           style="border-radius:10px;">
+            Cancelar
+        </a>
+    </form>
+
+</div>

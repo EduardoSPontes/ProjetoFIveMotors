@@ -1,0 +1,212 @@
+﻿@{
+    ViewData["Title"] = "Contato";
+    Layout = "/Views/Shared/_Layout_Contato.cshtml";
+}
+
+<div class="container py-5 contato-container">
+
+    <!-- ========================= HEADER ========================= -->
+    <div class="text-center mb-5">
+        <h1 class="titulo-contato">
+            👋 Fale com a FiveMotors
+        </h1>
+
+        <p class="subtitulo-contato">
+            Atendimento especializado para ajudar você a encontrar o carro ideal, esclarecer dúvidas ou agendar sua visita.
+        </p>
+    </div>
+
+
+    <div class="row g-4">
+
+        <!-- ========================= FORMULÁRIO ========================= -->
+        <div class="col-lg-6">
+            <div class="card card-contato shadow-lg">
+
+                <div class="card-body p-4">
+
+                    <h4 class="titulo-card">📝 Solicite Atendimento</h4>
+
+                    <form class="row g-3 needs-validation"
+                          method="post"
+                          asp-controller="Contato"
+                          asp-action="EnviarMensagem"
+                          novalidate>
+
+                        <div class="form-floating col-12">
+                            <input type="text" class="form-control" id="nome" name="Nome" required>
+                            <label for="nome">Nome completo</label>
+                        </div>
+
+                        <div class="form-floating col-md-6">
+                            <input type="email" class="form-control" id="email" name="Email" required>
+                            <label for="email">Email</label>
+                        </div>
+
+                        <div class="form-floating col-md-6">
+                            <input type="tel" class="form-control" id="telefone" name="Telefone" required>
+                            <label for="telefone">Telefone</label>
+                        </div>
+
+                        <div class="form-floating col-12">
+                            <textarea class="form-control" id="mensagem" name="Assunto" style="height: 150px;"></textarea>
+                            <label for="mensagem">Mensagem</label>
+                        </div>
+
+                        <div class="col-12 text-center mt-3">
+                            <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+                            <button type="reset" class="btn-limpar">Limpar</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- ========================= MAPA / INFORMAÇÕES ========================= -->
+        <div class="col-lg-6">
+            <div class="card card-contato shadow-lg">
+
+                <div class="card-body p-4">
+
+                    <h4 class="titulo-card text-center">📍 Localização & Atendimento</h4>
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18..."
+                            width="100%" height="420" loading="lazy" allowfullscreen
+                            class="mapa-localizacao">
+                    </iframe>
+
+                    <div class="text-center mt-4">
+
+                        <h5 class="titulo-unidade">
+                            FiveMotors — Unidade São Paulo
+                        </h5>
+
+                        <p class="endereco">
+                            Rua Exemplo, 123 · São Paulo — SP
+                        </p>
+
+                        <div class="caixa-atendimento">
+                            <p class="texto-atendimento">
+                                ⏰ Atendimento: 08h às 19h (Seg–Sáb)
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+    /* ---------- CONTAINER ---------- */
+    .contato-container {
+        max-width: 1200px;
+    }
+
+    .titulo-contato {
+        color: #1F2F3E;
+        font-size: 2.7rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+    .subtitulo-contato {
+        color: #6C757D;
+        font-size: 1.1rem;
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+
+    /* ---------- CARD ---------- */
+    .card-contato {
+        border-radius: 20px;
+        border: none;
+        background: #ffffff;
+    }
+
+    .titulo-card {
+        font-weight: 700;
+        color: #1F2F3E;
+        font-size: 1.4rem;
+        margin-bottom: 1.2rem;
+    }
+
+
+    /* ---------- MAPA ---------- */
+    .mapa-localizacao {
+        border: 0;
+        border-radius: 16px;
+        width: 100%;
+    }
+
+    .titulo-unidade {
+        font-weight: 700;
+        color: #1F2F3E;
+    }
+
+    .endereco {
+        color: #6C757D;
+        font-size: 1rem;
+        margin-top: 5px;
+    }
+
+    .caixa-atendimento {
+        background: #F9FAFB;
+        padding: 12px;
+        border-radius: 12px;
+        display: inline-block;
+    }
+
+    .texto-atendimento {
+        color: #1F2F3E;
+        font-weight: 600;
+        margin: 0;
+    }
+
+
+    /* ---------- BOTÕES ---------- */
+    .btn-enviar {
+        background: linear-gradient(90deg, #0AADA6, #0CDAC3);
+        color: white;
+        border: none;
+        border-radius: 14px;
+        font-weight: 700;
+        padding: 10px 30px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: .3s;
+    }
+
+        .btn-enviar:hover {
+            transform: scale(1.03);
+            opacity: .9;
+        }
+
+    .btn-limpar {
+        background: #D9534F;
+        color: white;
+        border: none;
+        border-radius: 14px;
+        font-weight: 600;
+        padding: 10px 30px;
+        margin-left: 10px;
+    }
+
+
+    /* ---------- INPUTS ---------- */
+    .form-control, .form-select {
+        border-radius: 12px !important;
+    }
+
+</style>
