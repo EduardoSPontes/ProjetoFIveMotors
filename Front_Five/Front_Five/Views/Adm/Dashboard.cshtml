@@ -1,0 +1,126 @@
+﻿@model DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "/Views/Shared/_Layout_Adm.cshtml";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4 fw-bold text-center display-6">Dashboard Administrativo</h2>
+
+    <!-- CARDS PRINCIPAIS -->
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+            <div class="card shadow-lg text-center p-4 border-0 rounded-4">
+                <h6 class="text-muted">Vendas no Mês</h6>
+                <h1 class="text-danger fw-bold">@Model.Totais.Vendas</h1>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-lg text-center p-4 border-0 rounded-4">
+                <h6 class="text-muted">Total Mensagens</h6>
+                <h1 class="text-primary fw-bold">@Model.Totais.Mensagens</h1>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-lg text-center p-4 border-0 rounded-4">
+                <h6 class="text-muted">Total Veículos</h6>
+                <h1 class="text-success fw-bold">@Model.Totais.Veiculos</h1>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- GRÁFICO NOVO (BARRAS) -->
+    <div class="card shadow-lg p-4 mb-5 border-0 rounded-4">
+        <h5 class="mb-3 fw-bold">📈 Faturamento Mensal</h5>
+        <canvas id="graficoVendas"></canvas>
+    </div>
+
+    <!-- ÚLTIMOS VEÍCULOS -->
+    <h3 class="mt-4 fw-bold">🆕 Últimos Veículos</h3>
+
+    <div class="row mt-3">
+        @foreach (var v in Model.UltimosVeiculos)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
+                    <img src="@v.Imagem"
+                         class="card-img-top"
+                         style="height:230px; object-fit:cover;" />
+
+                    <div class="card-body">
+                        <h5 class="fw-bold">@v.Marca @v.Modelo</h5>
+                        <p class="text-muted mb-1">Estoque: @v.Estoque</p>
+                        <p class="fw-bold fs-5 text-danger">R$ @v.Preco</p>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+<!-- CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const meses = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
+                                Model.VendasPorMes.Select(x => x.Mes)
+                ));
+
+    const totais = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
+                                Model.VendasPorMes.Select(x => x.Total)
+                ));
+
+    const ctx = document.getElementById('graficoVendas');
+
+    new Chart(ctx, {
+        type: 'bar', // TROQUEI PARA BARRAS
+        data: {
+            labels: meses,
+            datasets: [{
+                label: 'Faturamento (R$)',
+                data: totais,
+                borderWidth: 2,
+                backgroundColor: 'rgba(52, 152, 219, 0.6)',
+                borderColor: 'rgba(41, 128, 185, 1)',
+                borderRadius: 8, // deixa mais moderno
+                barThickness: 40,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        font: { size: 13 }
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: { size: 13 }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+<!-- ESTILO EXTRA -->
+<style>
+    .card {
+        transition: transform .2s ease-in-out;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+</style>

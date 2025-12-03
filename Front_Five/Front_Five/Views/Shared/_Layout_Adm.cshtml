@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 ">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="img/Logo.png" width="70px"/></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/Logo.png" width="70px"/></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,6 +24,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " style="color: #489891" asp-area="" asp-controller="Adm" asp-action="Mensagens">Mensagem/Cliente</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " style="color: #489891" asp-area="" asp-controller="Adm" asp-action="Dashboard">Dashboard</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -40,22 +43,7 @@
   
   
 
-    <a href="https://wa.me/5511999999999"
-       target="_blank"
-       style="position: fixed;
-          bottom: 18px;
-          right: 20px;
-          background-color: #25d366;
-          color: white;
-          font-weight: bold;
-          padding: 12px 12px;
-          border-radius: 30px;
-          text-decoration: none;
-          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-          transition: transform 0.2s ease;
-          font-size: 10px  ">
-        💬 Fale conosco via WhatsApp
-    </a>
+  
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

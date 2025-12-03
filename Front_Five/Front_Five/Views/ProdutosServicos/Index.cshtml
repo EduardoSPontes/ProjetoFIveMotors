@@ -5,76 +5,88 @@
     Layout = "/Views/Shared/_Layout_Produtos.cshtml";
 }
 
-<div class="container my-5">
+<!-- ========================= HEADER DA SEÇÃO ========================= -->
+<div class="section-header text-center py-5">
+    <h1 class="fw-bold title-main">Explore Nossos Veículos</h1>
+    <p class="subtitle">
+        Encontre o carro perfeito combinando desempenho, estilo e tecnologia.
+    </p>
+</div>
+
+
+<div class="container mb-5">
     <div class="row g-4">
 
-        <!-- FILTROS -->
+        <!-- ========================= FILTROS ========================= -->
         <aside class="col-lg-3">
-            <div class="card shadow-sm border-0 rounded-4 filtros-card">
-                <div class="card-header bg-light border-0 rounded-top-4">
-                    <h5 class="mb-0 fw-bold text-uppercase text-secondary">Filtros</h5>
-                </div>
-                <div class="card-body">
-                    <form method="get" asp-action="Index" asp-controller="ProdutosServicos">
+            <div class="filter-box shadow-sm p-4 rounded-4">
 
-                        <div class="mb-3">
-                            <label class="form-label text-uppercase text-muted">Modelo</label>
-                            <input type="text" name="modelo" value="@Context.Request.Query["modelo"]"
-                                   class="form-control rounded-3" placeholder="Digite o modelo..." />
-                        </div>
+                <h4 class="text-uppercase fw-bold mb-4 text-secondary">Filtros</h4>
 
-                        <div class="mb-3">
-                            <label class="form-label text-uppercase text-muted">Marca</label>
-                            <select name="marca" class="form-select rounded-3">
-                                <option value="">Todas</option>
-                                @foreach (string m in (IEnumerable<string>)ViewBag.Marcas)
-                                {
-                                    <option value="@m" selected="@(Context.Request.Query["marca"] == m)">@m</option>
-                                }
-                            </select>
-                        </div>
+                <form method="get" asp-action="Index" asp-controller="ProdutosServicos">
 
-                        <div class="mb-3">
-                            <label class="form-label text-uppercase text-muted">Ano</label>
-                            <select name="ano" class="form-select rounded-3">
-                                <option value="">Todos</option>
-                                @foreach (int a in (IEnumerable<int>)ViewBag.Anos)
-                                {
-                                    <option value="@a" selected="@(Context.Request.Query["ano"] == a.ToString())">@a</option>
-                                }
-                            </select>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Modelo</label>
+                        <input type="text"
+                               name="modelo"
+                               value="@Context.Request.Query["modelo"]"
+                               class="form-control rounded-3"
+                               placeholder="Digite o modelo..." />
+                    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label text-uppercase text-muted">Faixa de Preço</label>
-                            <select name="faixaPreco" class="form-select rounded-3">
-                                <option value="">Todas</option>
-                                <option value="ate50000" selected="@(Context.Request.Query["faixaPreco"] == "ate50000")">Até R$ 50.000</option>
-                                <option value="50000a100000" selected="@(Context.Request.Query["faixaPreco"] == "50000a100000")">R$ 50.000 – R$ 100.000</option>
-                                <option value="acima100000" selected="@(Context.Request.Query["faixaPreco"] == "acima100000")">Acima de R$ 100.000</option>
-                            </select>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Marca</label>
+                        <select class="form-select rounded-3" name="marca">
+                            <option value="">Todas</option>
+                            @foreach (string m in (IEnumerable<string>)ViewBag.Marcas)
+                            {
+                                <option value="@m" selected="@(Context.Request.Query["marca"] == m)">@m</option>
+                            }
+                        </select>
+                    </div>
 
-                        <div class="mb-3">
-                            <label class="form-label text-uppercase text-muted">Estoque</label>
-                            <select name="estoque" class="form-select rounded-3">
-                                <option value="">Todos</option>
-                                <option value="1" selected="@(Context.Request.Query["estoque"] == "1")">Disponível</option>
-                                <option value="0" selected="@(Context.Request.Query["estoque"] == "0")">Indisponível</option>
-                            </select>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Ano</label>
+                        <select class="form-select rounded-3" name="ano">
+                            <option value="">Todos</option>
+                            @foreach (int a in (IEnumerable<int>)ViewBag.Anos)
+                            {
+                                <option value="@a" selected="@(Context.Request.Query["ano"] == a.ToString())">@a</option>
+                            }
+                        </select>
+                    </div>
 
-                        <div class="d-flex gap-2">
-                            <button type="submit" class="btn btn-gradient w-50 rounded-3">Procurar</button>
-                            <a asp-action="Index" asp-controller="ProdutosServicos" class="btn btn-outline-secondary w-50 rounded-3">Limpar</a>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Preço</label>
+                        <select class="form-select rounded-3" name="faixaPreco">
+                            <option value="">Todas</option>
+                            <option value="ate50000" selected="@(Context.Request.Query["faixaPreco"] == "ate50000")">Até R$ 50.000</option>
+                            <option value="50000a100000" selected="@(Context.Request.Query["faixaPreco"] == "50000a100000")">R$ 50.000 – 100.000</option>
+                            <option value="acima100000" selected="@(Context.Request.Query["faixaPreco"] == "acima100000")">Acima de R$ 100.000</option>
+                        </select>
+                    </div>
 
-                    </form>
-                </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Estoque</label>
+                        <select class="form-select rounded-3" name="estoque">
+                            <option value="">Todos</option>
+                            <option value="1" selected="@(Context.Request.Query["estoque"] == "1")">Disponível</option>
+                            <option value="0" selected="@(Context.Request.Query["estoque"] == "0")">Indisponível</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-gradient w-50 rounded-3" type="submit">Buscar</button>
+                        <a asp-action="Index" asp-controller="ProdutosServicos"
+                           class="btn btn-outline-secondary w-50 rounded-3">Limpar</a>
+                    </div>
+
+                </form>
             </div>
         </aside>
 
-        <!-- LISTAGEM -->
+
+        <!-- ========================= LISTA DE VEÍCULOS ========================= -->
         <section class="col-lg-9">
             <div class="row g-4">
 
@@ -83,34 +95,43 @@
                     foreach (var item in Model)
                     {
                         var imagens = item.ImagemsVeiculo?.ToList() ?? new List<string>();
-                        var imagemFrente = imagens.Count > 1 ? imagens[1] : imagens.FirstOrDefault();
-                        var imagemLateral = imagens.FirstOrDefault();
+                        var imgFrente = imagens.Count > 1 ? imagens[1] : imagens.FirstOrDefault();
+                        var imgLateral = imagens.FirstOrDefault();
 
                         <div class="col-md-6 col-lg-4">
-                            <div class="car-card float-hover">
+                            <div class="car-card">
+
+                                <!-- Flip -->
                                 <div class="card-inner">
                                     <div class="card-front">
-                                        <img src="@imagemLateral" alt="@item.Modelo" />
+                                        <img src="@imgLateral" alt="@item.Modelo" />
                                     </div>
+
                                     <div class="card-back">
-                                        <img src="@imagemFrente" alt="@item.Modelo" />
+                                        <img src="@imgFrente" alt="@item.Modelo" />
                                     </div>
                                 </div>
+
+                                <!-- Info -->
                                 <div class="car-info">
-                                    <h5>@item.Marca @item.Modelo (@item.Ano)</h5>
+                                    <h5 class="fw-bold">@item.Marca @item.Modelo (@item.Ano)</h5>
                                     <p>@item.Descricao</p>
                                     <span class="price">R$ @item.Preco.ToString("N2")</span>
-                                    <a asp-action="Especificacao" asp-route-id="@item.VeiculosId" class="btn btn-gradient rounded-3">Ver Detalhes</a>
+
+                                    <a asp-action="Especificacao"
+                                       asp-route-id="@item.VeiculosId"
+                                       class="btn btn-gradient w-100 rounded-3">
+                                        Ver Detalhes
+                                    </a>
                                 </div>
+
                             </div>
                         </div>
                     }
                 }
                 else
                 {
-                    <div class="col-12">
-                        <p class="text-center text-muted fs-5">Nenhum veículo encontrado.</p>
-                    </div>
+                    <p class="text-center fs-5 text-muted">Nenhum veículo encontrado.</p>
                 }
 
             </div>
@@ -119,89 +140,121 @@
     </div>
 </div>
 
+
+<!-- ========================= ESTILO ========================= -->
 <style>
-    /* Botão Gradient */
+    /* Títulos */
+    .title-main {
+        font-size: 2.5rem;
+        color: #1C2C3A;
+    }
+
+    .subtitle {
+        max-width: 650px;
+        margin: 0 auto;
+        color: #666;
+        font-size: 1.1rem;
+    }
+
+
+
+    /* Filtros */
+    .filter-box {
+        background: #fff;
+        border-radius: 20px;
+    }
+
+    .form-label {
+        font-size: 0.85rem;
+        color: #495057;
+    }
+
+
+
+    /* Botão Gradiente */
     .btn-gradient {
-        background: linear-gradient(90deg, #EEEEEE, #888888);
-        color: #fff;
+        background: linear-gradient(90deg, #444, #999);
+        color: white;
         font-weight: 600;
         transition: 0.3s;
     }
 
         .btn-gradient:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
+            transform: scale(1.07);
+            opacity: .9;
+            color: white;
         }
 
-    /* Card do veículo */
+
+
+    /* Card do carro */
     .car-card {
-        background: #fff;
-        border-radius: 16px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        background: white;
+        border-radius: 18px;
         overflow: hidden;
-        perspective: 1000px;
-        transition: transform 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+        padding-bottom: 10px;
+        transition: .4s ease;
     }
 
         .car-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.25);
         }
 
+
+    /* Flip */
     .card-inner {
         position: relative;
         width: 100%;
         height: 220px;
         transform-style: preserve-3d;
-        transition: transform 0.8s;
+        transition: transform 0.7s ease;
     }
 
     .car-card:hover .card-inner {
         transform: rotateY(180deg);
     }
 
-    .card-front, .card-back {
+    .card-front,
+    .card-back {
         position: absolute;
         width: 100%;
         height: 100%;
         backface-visibility: hidden;
     }
 
-        .card-front img, .card-back img {
+        .card-front img,
+        .card-back img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 14px;
+            border-radius: 16px;
         }
 
     .card-back {
         transform: rotateY(180deg);
     }
 
-    /* Informações do veículo */
+
+
+    /* Informações */
     .car-info {
         padding: 15px;
         text-align: center;
     }
 
-        .car-info h5 {
-            font-weight: bold;
-            color: #333;
-        }
-
         .car-info p {
+            min-height: 40px;
             font-size: 14px;
             color: #666;
-            min-height: 40px;
         }
 
     .price {
         display: block;
-        margin: 10px 0;
-        color: #7C6868;
+        margin: 10px 0 15px;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 18px;
+        color: #7C6868;
     }
 </style>

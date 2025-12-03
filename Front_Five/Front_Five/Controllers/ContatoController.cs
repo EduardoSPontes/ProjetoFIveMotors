@@ -1,24 +1,30 @@
 ﻿using FiveMotors.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Json;
 
 namespace FiveMotors.Controllers
 {
     public class ContatoController : Controller
     {
-        // GET: ContatoController
-        public ActionResult Index()
+        // Página inicial do formulário de contato
+        public IActionResult Index()
         {
             return View();
         }
 
+        // Recebe os dados do formulário e envia para a API
         [HttpPost]
         public async Task<IActionResult> EnviarMensagem(FaleComVendedor model)
         {
-          
+            if (!ModelState.IsValid)
+                return View("Index", model);
+
             using var client = new HttpClient();
 
-            var response = await client.PostAsJsonAsync("http://localhost:5206/api/FaleComVendedor", model);
+            // Envia a mensagem para a API
+            var response = await client.PostAsJsonAsync(
+                "http://localhost:5206/api/FaleComVendedor", model
+            );
 
             if (response.IsSuccessStatusCode)
             {
@@ -29,76 +35,6 @@ namespace FiveMotors.Controllers
             {
                 TempData["Erro"] = "Falha ao enviar mensagem. Tente novamente.";
                 return View("Index", model);
-            }
-        }
-
-
-        // GET: ContatoController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: ContatoController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ContatoController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ContatoController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ContatoController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ContatoController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ContatoController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
             }
         }
     }

@@ -64,6 +64,10 @@
         .navbar-brand img {
             width: 70px;
         }
+
+        .logo-branca {
+            filter: brightness(0) invert(1);
+}
     </style>
 </head>
 
@@ -86,7 +90,14 @@
                         <li class="nav-item"><a class="nav-link fw-semibold" style="color: #489891;" asp-controller="QuemSomos" asp-action="Index">Quem Somos</a></li>
                         <li class="nav-item"><a class="nav-link fw-semibold" style="color: #489891;" asp-controller="ProdutosServicos" asp-action="Index">Produtos e Serviços</a></li>
                         <li class="nav-item"><a class="nav-link fw-semibold" style="color: #489891;" asp-controller="Contato" asp-action="Index">Contato</a></li>
-                        <li class="nav-item"><a class="nav-link fw-semibold" style="color: #489891;" asp-controller="Adm" asp-action="Index">Administração</a></li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link fw-semibold" style="color: #489891;"
+                                   asp-controller="Adm" asp-action="Index">Administração</a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -102,7 +113,7 @@
         <div class="container">
             <div class="row text-center text-md-start">
                 <div class="col-md-4 mb-4">
-                    <img src="img/Logo.png" alt="FiveMotors Logo" width="120" class="mb-3">
+                    <img src="img/Logo.png" alt="FiveMotors Logo" width="120" class="mb-3 logo-branca">
                     <p>FiveMotors © 2025</p>
                     <p>Todos os direitos reservados.</p>
                 </div>

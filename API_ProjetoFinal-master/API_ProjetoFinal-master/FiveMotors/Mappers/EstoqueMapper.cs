@@ -10,7 +10,7 @@ namespace FiveMotors.Mappers
             return new EstoquePedido
             {
                 EstoquePedidoId = estoque.EstoquePedidoId,
-                VeiculoId = veiculo.VeiculoId, // Mantendo relacionamento
+                VeiculoId = veiculo.VeiculoId, 
                 Modelo = veiculo.Modelo,
                 Ano = veiculo.Ano,
                 QuantidadeDisponivel = veiculo.Estoque - quantidadeVendida,

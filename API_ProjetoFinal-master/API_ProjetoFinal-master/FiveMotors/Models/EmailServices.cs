@@ -48,7 +48,7 @@ namespace FiveMotors.Models
 
                 mail.To.Add(to);
 
-                // 📎 Anexar imagens (base64 → bytes → anexo)
+                // Anexar imagens (base64 → bytes → anexo)
                 if (attachmentsBase64 != null)
                 {
                     int count = 1;

@@ -2,7 +2,7 @@
 {
     public class WhatsAppMessage
     {
-        public string NumeroDestino { get; set; }   // Ex: "5599999999999"
-        public string Mensagem { get; set; }        // Conteúdo da mensagem
+        public string NumeroDestino { get; set; }   
+        public string Mensagem { get; set; }  
     }
 }

@@ -27,7 +27,7 @@ namespace FiveMotors.Controllers
                 subject: request.Subject,
                 body: request.Message,
                 isHtml: true,
-                attachmentsBase64: request.AttachmentsBase64 // ← agora envia imagens
+                attachmentsBase64: request.AttachmentsBase64 
             );
 
             return Ok("E-mail enviado com sucesso!");

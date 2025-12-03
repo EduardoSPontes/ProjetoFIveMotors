@@ -1,20 +1,24 @@
 ﻿@page
 @model FiveMotors.Areas.Identity.Pages.Account.RegisterModel
+
 @{
     ViewData["Title"] = "Register";
+    Layout = "/Views/Shared/_Layout_Login.cshtml";
 }
 
 <style>
-    body.cadastro {
+    /* ======== ESTILO DO BACKGROUND ======== */
+    body.login {
         margin: 0;
         padding: 0;
         font-family: 'Segoe UI', sans-serif;
-        background: url('/img/cadastro01.png') no-repeat center right;
+        background: url('/img/cadastro01.png') no-repeat center center;
         background-size: cover;
         background-color: #000;
         min-height: 100vh;
     }
 
+    /* ======== CARD DO FORMULÁRIO ======== */
     #registerForm {
         background: #fff;
         padding: 40px 30px;
@@ -32,7 +36,9 @@
             color: #222;
         }
 
-        #registerForm .form-control, #registerForm .form-select {
+        /* Inputs e selects */
+        #registerForm .form-control,
+        #registerForm .form-select {
             border-radius: 8px;
             border: 1px solid #ccc;
             padding: 12px;
@@ -45,6 +51,7 @@
             color: #555;
         }
 
+    /* ======== BOTÃO DE CADASTRAR ======== */
     #registerSubmit {
         background: #111;
         color: #fff;
@@ -60,66 +67,86 @@
             transform: scale(1.02);
         }
 
+    /* Remove coluna de login externo */
     .col-md-6 {
         display: none;
     }
 </style>
 
+<!-- ======== CONTAINER DO FORMULÁRIO ======== -->
 <div class="row justify-content-center align-items-center" style="min-height: 80vh;">
     <div class="col-md-4">
+
+        <!-- ======== FORMULÁRIO DE CADASTRO ======== -->
         <form id="registerForm" method="post" asp-route-returnUrl="@Model.ReturnUrl">
-            <h2>FiveMotors Club<br /><small>Tela de Cadastro</small></h2>
+
+            <h2>
+                FiveMotors Club<br />
+                <small>Tela de Cadastro</small>
+            </h2>
+
             <hr />
+
+            <!-- Resumo de validações -->
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+            <!-- Nome completo -->
             <div class="form-floating mb-3">
                 <input asp-for="Input.Nome" class="form-control" placeholder="Nome completo" />
                 <label asp-for="Input.Nome">Nome completo</label>
                 <span asp-validation-for="Input.Nome" class="text-danger"></span>
             </div>
 
+            <!-- Email -->
             <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" placeholder="Email" />
                 <label asp-for="Input.Email">Email</label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
 
+            <!-- Senha -->
             <div class="form-floating mb-3">
                 <input asp-for="Input.Password" class="form-control" placeholder="Senha" />
                 <label asp-for="Input.Password">Senha</label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
 
+            <!-- Confirmar senha -->
             <div class="form-floating mb-3">
                 <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirmar senha" />
                 <label asp-for="Input.ConfirmPassword">Confirmar senha</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
 
+            <!-- Telefone -->
             <div class="form-floating mb-3">
                 <input asp-for="Input.Telefone" class="form-control" placeholder="Telefone" />
                 <label asp-for="Input.Telefone">Telefone</label>
                 <span asp-validation-for="Input.Telefone" class="text-danger"></span>
             </div>
 
+            <!-- Endereço -->
             <div class="form-floating mb-3">
                 <input asp-for="Input.Endereco" class="form-control" placeholder="Endereço" />
                 <label asp-for="Input.Endereco">Endereço</label>
                 <span asp-validation-for="Input.Endereco" class="text-danger"></span>
             </div>
 
+            <!-- Data de nascimento -->
             <div class="form-floating mb-3">
                 <input asp-for="Input.DataNascimento" type="date" class="form-control" />
                 <label asp-for="Input.DataNascimento">Data de Nascimento</label>
                 <span asp-validation-for="Input.DataNascimento" class="text-danger"></span>
             </div>
 
+            <!-- CPF/CNPJ -->
             <div class="form-floating mb-3">
-                <input asp-for="Input.CpfCnpj" type="form-control" class="form-control" />
+                <input asp-for="Input.CpfCnpj" class="form-control" />
                 <label asp-for="Input.CpfCnpj">CPF OU CNPJ</label>
                 <span asp-validation-for="Input.CpfCnpj" class="text-danger"></span>
             </div>
 
+            <!-- Tipo Pessoa -->
             <div class="form-floating mb-3">
                 <select asp-for="Input.TipoPessoa" class="form-select">
                     <option value="">Selecione...</option>
@@ -130,8 +157,12 @@
                 <span asp-validation-for="Input.TipoPessoa" class="text-danger"></span>
             </div>
 
+            <!-- Botão final -->
             <button type="submit" id="registerSubmit" class="w-100 btn btn-lg">Cadastrar</button>
+
         </form>
+        <!-- ======== FIM DO FORMULÁRIO ======== -->
+
     </div>
 </div>
 

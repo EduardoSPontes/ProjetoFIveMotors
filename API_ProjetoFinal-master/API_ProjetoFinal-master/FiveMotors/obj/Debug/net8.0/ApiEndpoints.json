@@ -226,6 +226,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FiveMotors.Controllers.DashboardController",
+    "Method": "GetDashboard",
+    "RelativePath": "api/Dashboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FiveMotors.Controllers.EmailController",
     "Method": "SendEmail",
     "RelativePath": "api/Email/send",

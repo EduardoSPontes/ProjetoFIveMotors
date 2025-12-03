@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FiveMotors")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29a97462b2e4d03996de64be9d83f44641886c20")]
 [assembly: System.Reflection.AssemblyProductAttribute("FiveMotors")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FiveMotors")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

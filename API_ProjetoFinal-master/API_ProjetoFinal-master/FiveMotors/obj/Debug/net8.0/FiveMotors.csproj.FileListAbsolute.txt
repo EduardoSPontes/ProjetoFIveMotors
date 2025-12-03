@@ -283,3 +283,4 @@ C:\Users\eduar\Downloads\Projeto-FiveMotors-master\Projeto-FiveMotors-master\Pro
 C:\Users\eduar\Downloads\Projeto-FiveMotors-master\Projeto-FiveMotors-master\Projeto_FiveMotors\API_ProjetoFinal-master\API_ProjetoFinal-master\FiveMotors\obj\Debug\net8.0\FiveMotors.pdb
 C:\Users\eduar\Downloads\Projeto-FiveMotors-master\Projeto-FiveMotors-master\Projeto_FiveMotors\API_ProjetoFinal-master\API_ProjetoFinal-master\FiveMotors\obj\Debug\net8.0\FiveMotors.genruntimeconfig.cache
 C:\Users\eduar\Downloads\Projeto-FiveMotors-master\Projeto-FiveMotors-master\Projeto_FiveMotors\API_ProjetoFinal-master\API_ProjetoFinal-master\FiveMotors\obj\Debug\net8.0\ref\FiveMotors.dll
+C:\Users\eduar\Downloads\Projeto-FiveMotors-master\Projeto-FiveMotors-master\Projeto_FiveMotors\API_ProjetoFinal-master\API_ProjetoFinal-master\FiveMotors\obj\Debug\net8.0\FiveMotors.sourcelink.json

@@ -63,7 +63,7 @@ namespace FiveMotors.Controllers
 
 
 
-        
+
         public async Task<IActionResult> Delete(Guid id)
         {
             using var client = new HttpClient();
@@ -74,7 +74,7 @@ namespace FiveMotors.Controllers
             return View(veiculo);
         }
 
-        
+
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
@@ -113,6 +113,26 @@ namespace FiveMotors.Controllers
             using var client = new HttpClient();
             await client.DeleteAsync($"http://localhost:5206/api/FaleComVendedor/{id}");
             return RedirectToAction("Mensagens");
+        }
+
+        public async Task<IActionResult> Dashboard()
+        {
+            using var client = new HttpClient();
+
+            // 🔥 Chama sua API de Dashboard
+            var json = await client.GetStringAsync("http://localhost:5206/api/Dashboard");
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            var dados = JsonSerializer.Deserialize<DashboardViewModel>(json, options);
+
+            if (dados == null)
+                dados = new DashboardViewModel();
+
+            return View(dados);
         }
     }
 }

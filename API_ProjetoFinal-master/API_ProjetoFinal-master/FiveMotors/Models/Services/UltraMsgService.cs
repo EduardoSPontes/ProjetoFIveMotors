@@ -22,8 +22,8 @@ namespace FiveMotors.Models.Services
 
             var data = new
             {
-                to = numeroDestino,   // Ex: 5511999999999
-                body = texto          // Texto da mensagem
+                to = numeroDestino,   
+                body = texto         
             };
 
             var json = JsonConvert.SerializeObject(data);

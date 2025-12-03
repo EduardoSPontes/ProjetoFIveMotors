@@ -1,5 +1,10 @@
 wwwroot\css\FiveMotors.css
 wwwroot\favicon01.ico
+wwwroot\Grupo\Eduardo.jpg
+wwwroot\Grupo\Gabi.jpg
+wwwroot\Grupo\Larissa.jpg
+wwwroot\Grupo\Rayssa.jpg
+wwwroot\Grupo\Sabrina.jpg
 wwwroot\img\cadastro01.png
 wwwroot\img\Carro01.png
 wwwroot\img\Chevrolet_simple_logo 1.png

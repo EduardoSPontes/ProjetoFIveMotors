@@ -6,9 +6,10 @@
     Layout = "/Views/Shared/_Layout_Login.cshtml";
 }
 
-
 <style>
-    
+    /* ======== ESTILOS DA PÁGINA DE LOGIN ======== */
+
+    /* Background full-screen com imagem */
     body.login {
         margin: 0;
         padding: 0;
@@ -19,9 +20,9 @@
         min-height: 100vh;
     }
 
-    
+    /* Card central */
     .login-card {
-        background: #fff; 
+        background: #fff;
         padding: 40px 30px;
         border-radius: 12px;
         box-shadow: 0 5px 20px rgba(0,0,0,0.3);
@@ -49,6 +50,7 @@
             color: #555;
         }
 
+    /* Botão de login */
     #login-submit {
         background: #111;
         color: #fff;
@@ -64,36 +66,41 @@
             transform: scale(1.02);
         }
 
-    
+    /* Esconde coluna de serviços externos */
     .col-md-6 {
         display: none;
     }
 
-    
     .login-card p {
         text-align: center;
         margin-top: 10px;
     }
-
 </style>
 
-<div class="d-flex justify-content-center align-items-center ">
+<!-- ======== CONTAINER PRINCIPAL ======== -->
+<div class="d-flex justify-content-center align-items-center">
     <div class="login-card col-12 col-md-4">
+
+        <!-- ======== FORMULÁRIO DE LOGIN ======== -->
         <form id="account" method="post">
+
             <h2 class="text-center">FiveMotors</h2>
             <h2 class="text-center">Seja Bem Vindo!</h2>
             <hr />
 
+            <!-- Campo Email -->
             <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" placeholder="name@example.com" />
                 <label asp-for="Input.Email">Email</label>
             </div>
 
+            <!-- Campo Senha -->
             <div class="form-floating mb-3">
                 <input asp-for="Input.Password" type="password" class="form-control" placeholder="password" />
                 <label asp-for="Input.Password">Senha</label>
             </div>
 
+            <!-- Remember Me -->
             <div class="form-check mb-3">
                 <input class="form-check-input" asp-for="Input.RememberMe" />
                 <label class="form-check-label" asp-for="Input.RememberMe">
@@ -101,47 +108,79 @@
                 </label>
             </div>
 
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg" style="background: linear-gradient(90deg, #0CDAC3, #0bb5a3);color: #fff;font-weight: 600;border: none; border-radius: 10px;padding: 12px;"> Entrar</button>
+            <!-- Botão de Entrar -->
+            <button id="registerSubmit"
+                    type="submit"
+                    class="w-100 btn btn-lg"
+                    style="background: linear-gradient(90deg, #0CDAC3, #0bb5a3);
+                           color: #fff; font-weight: 600;
+                           border: none; border-radius: 10px; padding: 12px;">
+                Entrar
+            </button>
 
+            <!-- Links adicionais -->
             <p class="text-center mt-3">
-                <a style="color: #0CDAC3; text-decoration: none; " asp-page="./ForgotPassword">Esqueci minha senha ?</a>
+                <a style="color: #0CDAC3; text-decoration: none;"
+                   asp-page="./ForgotPassword">
+                    Esqueci minha senha ?
+                </a>
             </p>
+
             <p class="text-center">
-                <a style="color: #0CDAC3; text-decoration: none; " asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Fazer cadastro</a>
+                <a style="color: #0CDAC3; text-decoration: none;"
+                   asp-page="./Register"
+                   asp-route-returnUrl="@Model.ReturnUrl">
+                    Fazer cadastro
+                </a>
             </p>
+
         </form>
+        <!-- ======== FIM FORMULÁRIO ======== -->
     </div>
 </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to log in.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
+
+<!-- ======== LOGIN EXTERNO (ESCONDIDO POR CSS) ======== -->
+<div class="col-md-6 col-md-offset-2">
+    <section>
+        <h3>Use another service to log in.</h3>
+        <hr />
+
+        @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+        {
+            <div>
+                <p>
+                    There are no external authentication services configured.
+                    See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article</a>
+                    about enabling external login providers.
+                </p>
+            </div>
+        }
+        else
+        {
+            <form id="external-account"
+                  asp-page="./ExternalLogin"
+                  asp-route-returnUrl="@Model.ReturnUrl"
+                  method="post"
+                  class="form-horizontal">
+
+                <div>
+                    <p>
+                        @foreach (var provider in Model.ExternalLogins!)
+                        {
+                            <button type="submit"
+                                    class="btn btn-primary"
+                                    name="provider"
+                                    value="@provider.Name"
+                                    title="Log in using @provider.DisplayName">
+                                @provider.DisplayName
+                            </button>
+                        }
+                    </p>
+                </div>
+            </form>
+        }
+
+    </section>
 </div>
 
 @section Scripts {
