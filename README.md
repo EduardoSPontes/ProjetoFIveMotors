@@ -58,14 +58,7 @@ SQL Server
 ✔️ Área administrativa para cadastro, edição e exclusão de veículos
 ✔️ Interface responsiva
 
-🖥️ Estrutura do Sistema
-/FiveMotors
- ├── Controllers
- ├── Models
- ├── Views
- ├── wwwroot
- ├── Data
- └── README.md
+
 
 👨‍💻 Grupo do Projeto
 
